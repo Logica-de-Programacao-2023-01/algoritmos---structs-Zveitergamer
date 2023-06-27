@@ -1,0 +1,44 @@
+package main
+
+import "fmt"
+
+// Definição da struct Endereco
+type Endereco struct {
+	Rua     string
+	Numero  int
+	Cidade  string
+	Estado  string
+}
+
+// Definição da struct Pessoa
+type Pessoa struct {
+	Nome     string
+	Idade    int
+	Endereco Endereco
+}
+
+// Função para imprimir o endereço completo de uma pessoa
+func imprimirEndereco(pessoa Pessoa) {
+	fmt.Printf("Endereço completo de %s:\n", pessoa.Nome)
+	fmt.Printf("Rua: %s, %d\n", pessoa.Endereco.Rua, pessoa.Endereco.Numero)
+	fmt.Printf("Cidade: %s\n", pessoa.Endereco.Cidade)
+	fmt.Printf("Estado: %s\n", pessoa.Endereco.Estado)
+}
+
+func main() {
+	// Exemplo de uso
+	endereco := Endereco{
+		Rua:     "Rua A",
+		Numero:  123,
+		Cidade:  "São Paulo",
+		Estado:  "SP",
+	}
+
+	pessoa := Pessoa{
+		Nome:     "João",
+		Idade:    30,
+		Endereco: endereco,
+	}
+
+	imprimirEndereco(pessoa)
+}
