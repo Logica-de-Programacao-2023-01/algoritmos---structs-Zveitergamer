@@ -1,0 +1,59 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+// Definição da struct Musica
+type Musica struct {
+	Titulo   string
+	Artista  string
+	Duracao  time.Duration
+}
+
+// Definição da struct Playlist
+type Playlist struct {
+	Nome    string
+	Musicas []Musica
+}
+
+// Função para calcular o tempo total da playlist
+func calcularTempoTotal(playlist Playlist) time.Duration {
+	tempoTotal := time.Duration(0)
+
+	for _, musica := range playlist.Musicas {
+		tempoTotal += musica.Duracao
+	}
+
+	return tempoTotal
+}
+
+// Função para imprimir as informações da playlist
+func imprimirPlaylist(playlist Playlist) {
+	fmt.Println("Nome da Playlist:", playlist.Nome)
+	fmt.Println("Tempo Total da Playlist:", calcularTempoTotal(playlist))
+
+	for _, musica := range playlist.Musicas {
+		fmt.Println("Título:", musica.Titulo)
+		fmt.Println("Artista:", musica.Artista)
+		fmt.Println("Duração:", musica.Duracao)
+		fmt.Println()
+	}
+}
+
+func main() {
+	// Exemplo de uso
+	musicas := []Musica{
+		{Titulo: "Música 1", Artista: "Artista 1", Duracao: time.Minute * 3},
+		{Titulo: "Música 2", Artista: "Artista 2", Duracao: time.Minute * 4},
+		{Titulo: "Música 3", Artista: "Artista 3", Duracao: time.Minute * 5},
+	}
+
+	playlist := Playlist{
+		Nome:    "Minha Playlist",
+		Musicas: musicas,
+	}
+
+	imprimirPlaylist(playlist)
+}
